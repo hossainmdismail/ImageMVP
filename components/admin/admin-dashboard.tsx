@@ -27,7 +27,9 @@ const emptyContent: ExperienceContent = {
     helmetRequired: true,
     poseDirection: "",
     cameraFrame: "",
-    poseVariants: []
+    poseVariants: [],
+    wardrobeDirection: "",
+    realismDirection: ""
   },
   bikes: [],
   environments: [],
@@ -334,6 +336,20 @@ export function AdminDashboard({ initialAuthenticated }: AdminDashboardProps) {
               items={content.settings.poseVariants}
               onChange={(items) => updateSettings("poseVariants", items)}
               addLabel="Add pose variant"
+            />
+          </Field>
+          <Field label="Wardrobe direction">
+            <textarea
+              className="min-h-28 w-full rounded-3xl border border-white/60 bg-white/85 px-4 py-3 text-sm text-slate-900 shadow-sm outline-none"
+              value={content.settings.wardrobeDirection}
+              onChange={(event) => updateSettings("wardrobeDirection", event.target.value)}
+            />
+          </Field>
+          <Field label="Realism direction">
+            <textarea
+              className="min-h-28 w-full rounded-3xl border border-white/60 bg-white/85 px-4 py-3 text-sm text-slate-900 shadow-sm outline-none"
+              value={content.settings.realismDirection}
+              onChange={(event) => updateSettings("realismDirection", event.target.value)}
             />
           </Field>
         </div>

@@ -26,7 +26,9 @@
       "The rider is standing next to the motorcycle with one leg slightly crossed, stylish street-fashion biker posture.",
       "The rider is posing beside the motorcycle with strong premium body language and full head-to-toe framing.",
       "The rider is standing beside the motorcycle with a clean fashion-commercial pose, face clearly visible and shoes fully visible."
-    ]
+    ],
+    "wardrobeDirection": "The rider is wearing premium biker streetwear: fitted jeans, a real leather jacket, clean boots or sneakers, and a cool modern Yamaha lifestyle look.",
+    "realismDirection": "Ultra photorealistic commercial motorcycle photography. Real Yamaha design language, real motorcycle proportions, real materials, realistic wheels, brakes, fairings, lighting, shadows, and reflections. No illustration, no anime, no cartoon, no CGI look, no plastic-looking surfaces, no stylized rendering."
   },
   "bikes": [
     {

@@ -83,6 +83,8 @@ export interface ExperienceContent {
     poseDirection: string;
     cameraFrame: string;
     poseVariants: string[];
+    wardrobeDirection: string;
+    realismDirection: string;
   };
   bikes: BikeOption[];
   environments: EnvironmentOption[];

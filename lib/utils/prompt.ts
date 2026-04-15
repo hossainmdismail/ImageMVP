@@ -26,6 +26,12 @@ export function buildRidePromptBundle(data: RideFormData, content: ExperienceCon
     : "The rider is not wearing a helmet. The face must be clearly visible and unobstructed.";
   const poseDirection = content.settings.poseDirection || "Stylish premium rider pose.";
   const cameraFrame = content.settings.cameraFrame || "Vertical premium portrait framing.";
+  const wardrobeDirection =
+    content.settings.wardrobeDirection ||
+    "The rider is wearing fitted jeans, a real leather jacket, and premium biker streetwear.";
+  const realismDirection =
+    content.settings.realismDirection ||
+    "Ultra photorealistic motorcycle campaign image with real materials and no cartoon styling.";
   const randomizedPose =
     content.settings.poseVariants.length > 0
       ? content.settings.poseVariants[Math.floor(Math.random() * content.settings.poseVariants.length)]
@@ -38,8 +44,8 @@ export function buildRidePromptBundle(data: RideFormData, content: ExperienceCon
     sceneDirection,
     imagePrompt:
       `Cinematic lifestyle scene of ${subjectDirection}, with ${socialDynamic}, ` +
-      `riding a ${data.bikeType} motorcycle in a ${data.environment} setting with ${sceneDirection}. ` +
-      `Wardrobe uses tones of ${data.favoriteColor}. Mood feels ${selectedBehavior.emotionalTone}. ${compositionDirection}. ` +
+      `featuring a real ${data.bikeType} Yamaha motorcycle in a ${data.environment} setting with ${sceneDirection}. ` +
+      `${wardrobeDirection} Color accents use tones of ${data.favoriteColor}. Mood feels ${selectedBehavior.emotionalTone}. ${compositionDirection}. ` +
       `${helmetDirection} ${poseDirection} ${randomizedPose} ${cameraFrame} ` +
       `Preserve the exact facial identity from the reference photos: same face shape, eyes, nose, lips, skin tone, and age appearance. ` +
       `Do not change ethnicity or gender presentation. Keep the strongest possible likeness to the uploaded person. ` +
@@ -47,6 +53,7 @@ export function buildRidePromptBundle(data: RideFormData, content: ExperienceCon
       `Camera must be pulled back enough to show visible ground below both shoes and comfortable space above the head. ` +
       `Avoid tight crop, avoid waist-up crop, avoid knee crop, avoid ankle crop. ` +
       `Do not place a helmet on the rider when helmet is disabled. Keep the face cleanly readable. ` +
+      `${realismDirection} ` +
       `Natural lighting, premium composition, expressive body language, authentic human energy, ` +
       `brand-campaign-ready, marketing-friendly, social-media-ready, emotionally engaging, polished editorial realism.`,
     storyPrompt:
