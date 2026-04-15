@@ -1,51 +1,58 @@
-import { RideFormData, RidePromptBundle } from "@/types";
+import { ExperienceContent, RideFormData, RidePromptBundle } from "@/types";
 
-const environmentDirection: Record<RideFormData["environment"], string> = {
-  city: "neon-lit avenues, dynamic architecture, and fashionable street framing",
-  village: "open roads, soft daylight, local texture, and grounded warmth",
-  mountain: "dramatic elevation, sweeping curves, and cinematic air",
-  coastal: "golden shoreline light, salty breeze, and expansive horizon lines",
-  desert: "sun-baked openness, sculptural shadows, and premium editorial contrast"
-};
+export function buildRidePromptBundle(data: RideFormData, content: ExperienceContent): RidePromptBundle {
+  const environment = content.environments.find((item) => item.id === data.environment);
+  const mapped = content.behaviorQuestion.options.find((item) => item.id === data.behavior);
+  const companionMode = content.settings.companionMode;
+  const fallbackBehavior = content.behaviorQuestion.options[0];
 
-const behaviorMap = {
-  leave: {
-    traits: ["confident", "self-directed", "fearlessly stylish"],
-    emotionalTone: "assertive and magnetic",
-    socialDynamic: "two close friends with playful respect for each other's independence"
-  },
-  stay: {
-    traits: ["calm", "loyal", "effortlessly grounded"],
-    emotionalTone: "warm and trustworthy",
-    socialDynamic: "two close friends with a deeply supportive, easygoing connection"
-  },
-  scold: {
-    traits: ["expressive", "passionate", "big-hearted"],
-    emotionalTone: "lively and emotionally vivid",
-    socialDynamic: "two close friends with teasing chemistry and visible affection"
-  }
-} as const;
-
-export function buildRidePromptBundle(data: RideFormData): RidePromptBundle {
-  const mapped = behaviorMap[data.behavior];
-  const personalityTraits = [data.vibe || "adventurous", ...mapped.traits];
-  const sceneDirection = environmentDirection[data.environment];
+  const selectedBehavior = mapped || fallbackBehavior;
+  const personalityTraits = [data.vibe || "adventurous", ...selectedBehavior.traits];
+  const sceneDirection = environment?.sceneDirection || "cinematic open-road atmosphere";
+  const socialDynamic =
+    companionMode === "solo"
+      ? selectedBehavior.socialDynamicSolo
+      : selectedBehavior.socialDynamicFriend;
+  const subjectDirection =
+    companionMode === "solo"
+      ? `${data.name || "a stylish"} solo rider`
+      : `${data.name || "a stylish"} rider with a close friend`;
+  const compositionDirection =
+    companionMode === "solo"
+      ? "single subject only, no extra passenger, one rider on the bike"
+      : "two friends together on the bike";
+  const helmetDirection = content.settings.helmetRequired
+    ? "The rider is wearing a premium full-face motorcycle helmet."
+    : "The rider is not wearing a helmet. The face must be clearly visible and unobstructed.";
+  const poseDirection = content.settings.poseDirection || "Stylish premium rider pose.";
+  const cameraFrame = content.settings.cameraFrame || "Vertical premium portrait framing.";
+  const randomizedPose =
+    content.settings.poseVariants.length > 0
+      ? content.settings.poseVariants[Math.floor(Math.random() * content.settings.poseVariants.length)]
+      : "";
 
   return {
     personalityTraits,
-    emotionalTone: mapped.emotionalTone,
-    socialDynamic: mapped.socialDynamic,
+    emotionalTone: selectedBehavior.emotionalTone,
+    socialDynamic,
     sceneDirection,
     imagePrompt:
-      `Cinematic lifestyle scene of ${data.name || "a stylish"} rider with ${mapped.socialDynamic}, ` +
+      `Cinematic lifestyle scene of ${subjectDirection}, with ${socialDynamic}, ` +
       `riding a ${data.bikeType} motorcycle in a ${data.environment} setting with ${sceneDirection}. ` +
-      `Wardrobe uses tones of ${data.favoriteColor}. Mood feels ${mapped.emotionalTone}. ` +
-      `Natural lighting, premium composition, expressive body language, authentic friendship energy, ` +
-      `social-media-ready, emotionally engaging, polished editorial realism.`,
+      `Wardrobe uses tones of ${data.favoriteColor}. Mood feels ${selectedBehavior.emotionalTone}. ${compositionDirection}. ` +
+      `${helmetDirection} ${poseDirection} ${randomizedPose} ${cameraFrame} ` +
+      `Preserve the exact facial identity from the reference photos: same face shape, eyes, nose, lips, skin tone, and age appearance. ` +
+      `Do not change ethnicity or gender presentation. Keep the strongest possible likeness to the uploaded person. ` +
+      `Do not crop the top of the head. Do not crop the feet. Show the full body from head to toe. ` +
+      `Camera must be pulled back enough to show visible ground below both shoes and comfortable space above the head. ` +
+      `Avoid tight crop, avoid waist-up crop, avoid knee crop, avoid ankle crop. ` +
+      `Do not place a helmet on the rider when helmet is disabled. Keep the face cleanly readable. ` +
+      `Natural lighting, premium composition, expressive body language, authentic human energy, ` +
+      `brand-campaign-ready, marketing-friendly, social-media-ready, emotionally engaging, polished editorial realism.`,
     storyPrompt:
       `Create a concise JSON object with keys "summary" and "caption". The rider is ${data.name || "the user"}, ` +
-      `with traits ${personalityTraits.join(", ")}. The emotional tone is ${mapped.emotionalTone}. ` +
-      `The friend dynamic is ${mapped.socialDynamic}. The scene is a ${data.environment} ride on a ${data.bikeType}. ` +
+      `with traits ${personalityTraits.join(", ")}. The emotional tone is ${selectedBehavior.emotionalTone}. ` +
+      `The social dynamic is ${socialDynamic}. The scene is a ${data.environment} ride on a ${data.bikeType}. ` +
       `Favorite color: ${data.favoriteColor}. Keep the summary under 45 words and the caption under 18 words.`,
     summarySeed:
       `${data.name || "You"} ride like someone ${personalityTraits.join(", ")}, turning every ${data.environment} route into a shared memory.`,
@@ -56,7 +63,7 @@ export function buildRidePromptBundle(data: RideFormData): RidePromptBundle {
 export function fallbackStoryText(data: RideFormData, bundle: RidePromptBundle) {
   return {
     summary:
-      `${data.name || "You"} come across as ${bundle.personalityTraits.slice(0, 3).join(", ")}, with a ${bundle.emotionalTone} presence that makes every ${data.environment} ride feel like a close-friend movie scene.`,
+      `${data.name || "You"} come across as ${bundle.personalityTraits.slice(0, 3).join(", ")}, with a ${bundle.emotionalTone} presence that makes every ${data.environment} ride feel cinematic and personal.`,
     caption: "Just found my ride personality. #RideStory #MyBikeMood"
   };
 }

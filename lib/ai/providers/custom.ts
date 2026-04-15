@@ -28,7 +28,7 @@ export class CustomProvider implements AIProvider {
     return data.text || JSON.stringify(data);
   }
 
-  async generateImage({ prompt, image }: GenerateImageParams): Promise<string> {
+  async generateImage({ prompt, image, images = [] }: GenerateImageParams): Promise<string> {
     const formData = new FormData();
     formData.append("model", this.config.imageModel);
     formData.append("prompt", prompt);
@@ -36,6 +36,8 @@ export class CustomProvider implements AIProvider {
     if (image) {
       formData.append("image", image);
     }
+
+    images.forEach((file) => formData.append("images", file));
 
     const response = await fetch(
       `${this.config.apiUrl}${process.env.CUSTOM_AI_IMAGE_PATH || "/image"}`,

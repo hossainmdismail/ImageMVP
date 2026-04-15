@@ -1,0 +1,301 @@
+{
+  "hero": {
+    "eyebrow": "Yamaha Marketing Experience",
+    "title": "Turn every rider into a premium shareable Yamaha story.",
+    "description": "A fast, campaign-ready personality flow that transforms rider preferences into a branded, emotionally expressive image built for social sharing and awareness.",
+    "highlights": [
+      "Official Yamaha-inspired lineup selection",
+      "Up to 3 reference photos for stronger face preservation",
+      "AI-generated branded lifestyle visual",
+      "Instant caption, download, and social share"
+    ],
+    "viralityTitle": "Campaign hook",
+    "viralityDescription": "The result page is optimized for rider excitement, repeat generation, and social storytelling that expands Yamaha brand visibility."
+  },
+  "settings": {
+    "companionMode": "solo",
+    "defaultAgeRange": "18-24",
+    "defaultVibe": "Confident",
+    "defaultFavoriteColor": "#0033A0",
+    "helmetRequired": false,
+    "poseDirection": "Full-body vertical portrait of the rider standing beside or lightly leaning on the motorcycle, one foot grounded, stylish confident body language, premium biker fashion pose, face clearly visible, head uncovered, no helmet on the head.",
+    "cameraFrame": "Vertical 4:5 campaign framing, full head visible, full feet visible, entire rider visible from head to toe, bike fully visible, no cropped head, no cropped shoes, premium shallow depth of field.",
+    "poseVariants": [
+      "The rider is standing beside the motorcycle with a relaxed editorial pose and both feet fully visible.",
+      "The rider is lightly leaning on the motorcycle with one hand resting on the seat and a confident campaign pose.",
+      "The rider is standing next to the motorcycle with one leg slightly crossed, stylish street-fashion biker posture.",
+      "The rider is posing beside the motorcycle with strong premium body language and full head-to-toe framing.",
+      "The rider is standing beside the motorcycle with a clean fashion-commercial pose, face clearly visible and shoes fully visible."
+    ]
+  },
+  "bikes": [
+    {
+      "id": "yzf-r1m",
+      "name": "YZF-R1M",
+      "description": "Flagship race-bred supersport with elite performance energy for premium hero visuals.",
+      "image": "/bikes/neo-cafe.svg"
+    },
+    {
+      "id": "yzf-r1",
+      "name": "YZF-R1",
+      "description": "Iconic supersport presence built for aggressive, high-adrenaline campaign imagery.",
+      "image": "/bikes/neo-cafe.svg"
+    },
+    {
+      "id": "yzf-r9",
+      "name": "YZF-R9",
+      "description": "Modern middleweight supersport with sharp styling and standout visual character.",
+      "image": "/bikes/neo-cafe.svg"
+    },
+    {
+      "id": "yzf-r7",
+      "name": "YZF-R7",
+      "description": "Track-inspired sportbike balancing attitude, accessibility, and bold marketing appeal.",
+      "image": "/bikes/neo-cafe.svg"
+    },
+    {
+      "id": "yzf-r3",
+      "name": "YZF-R3",
+      "description": "Lightweight supersport with youthful energy and approachable performance styling.",
+      "image": "/bikes/neo-cafe.svg"
+    },
+    {
+      "id": "mt-10-sp",
+      "name": "MT-10 SP",
+      "description": "Premium Hyper Naked machine with dramatic street presence and high-impact styling.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "mt-10",
+      "name": "MT-10",
+      "description": "Aggressive Hyper Naked with muscular lines and urban campaign energy.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "mt-09-sp",
+      "name": "MT-09 SP",
+      "description": "Refined Hyper Naked with premium attitude, perfect for expressive city visuals.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "mt-09",
+      "name": "MT-09",
+      "description": "Bold everyday performance bike with unmistakable Yamaha street personality.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "mt-07",
+      "name": "MT-07",
+      "description": "Versatile and modern naked bike that translates well into relatable lifestyle creative.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "mt-03",
+      "name": "MT-03",
+      "description": "Compact streetfighter with youthful styling and clean social-friendly proportions.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "xsr900-gp",
+      "name": "XSR900 GP",
+      "description": "Retro race-inspired machine with heritage appeal and premium storytelling power.",
+      "image": "/bikes/coast-cruiser.svg"
+    },
+    {
+      "id": "xsr900",
+      "name": "XSR900",
+      "description": "Sport Heritage model blending timeless style with a sharp modern edge.",
+      "image": "/bikes/coast-cruiser.svg"
+    },
+    {
+      "id": "xsr700",
+      "name": "XSR700",
+      "description": "Classic-inspired urban machine built for stylish, culture-driven rider campaigns.",
+      "image": "/bikes/coast-cruiser.svg"
+    },
+    {
+      "id": "tenere-700",
+      "name": "Tenere 700",
+      "description": "Adventure icon made for dramatic travel visuals and freedom-led brand storytelling.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "tenere-700-world-raid",
+      "name": "Tenere 700 World Raid",
+      "description": "Expanded adventure touring machine built for epic expedition-style campaign visuals.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "tracer-9",
+      "name": "Tracer 9",
+      "description": "Sport touring model designed for aspirational long-distance lifestyle scenes.",
+      "image": "/bikes/summit-r.svg"
+    },
+    {
+      "id": "fjr1300es",
+      "name": "FJR1300ES",
+      "description": "Full-size touring flagship with executive road-trip presence and premium comfort cues.",
+      "image": "/bikes/summit-r.svg"
+    },
+    {
+      "id": "bolt-r-spec",
+      "name": "Bolt R-Spec",
+      "description": "Minimal cruiser attitude with custom-friendly style and strong lifestyle appeal.",
+      "image": "/bikes/coast-cruiser.svg"
+    },
+    {
+      "id": "v-star-250",
+      "name": "V Star 250",
+      "description": "Light cruiser feel with approachable vintage spirit for relaxed campaign visuals.",
+      "image": "/bikes/coast-cruiser.svg"
+    },
+    {
+      "id": "zuma-125",
+      "name": "Zuma 125",
+      "description": "Urban runabout with playful energy for younger, city-first social content.",
+      "image": "/bikes/summit-r.svg"
+    },
+    {
+      "id": "xmax",
+      "name": "XMAX",
+      "description": "Premium scooter styling suited to sleek city mobility campaigns.",
+      "image": "/bikes/summit-r.svg"
+    },
+    {
+      "id": "xt250",
+      "name": "XT250",
+      "description": "Light dual-sport with rugged versatility and approachable adventure character.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "tw200",
+      "name": "TW200",
+      "description": "Distinctive dual-sport icon with playful utility and memorable silhouette.",
+      "image": "/bikes/trail-blazer.svg"
+    },
+    {
+      "id": "wr155r",
+      "name": "WR155R",
+      "description": "Trail-ready off-road inspired machine suited to energetic outdoor storytelling.",
+      "image": "/bikes/trail-blazer.svg"
+    }
+  ],
+  "environments": [
+    {
+      "id": "city",
+      "label": "City Ride",
+      "description": "Fast pace, lights, and a stylish street-energy backdrop.",
+      "sceneDirection": "neon-lit avenues, dynamic architecture, and fashionable street framing"
+    },
+    {
+      "id": "village",
+      "label": "Village Ride",
+      "description": "Warm, grounded, and rich with everyday charm.",
+      "sceneDirection": "open roads, soft daylight, local texture, and grounded warmth"
+    },
+    {
+      "id": "mountain",
+      "label": "Mountain Ride",
+      "description": "Epic views, elevation, and expressive freedom.",
+      "sceneDirection": "dramatic elevation, sweeping curves, and cinematic air"
+    },
+    {
+      "id": "coastal",
+      "label": "Coastal Ride",
+      "description": "Breezy, cinematic, and full of horizon energy.",
+      "sceneDirection": "golden shoreline light, salty breeze, and expansive horizon lines"
+    },
+    {
+      "id": "desert",
+      "label": "Desert Ride",
+      "description": "High contrast, fearless, and fashion-forward.",
+      "sceneDirection": "sun-baked openness, sculptural shadows, and premium editorial contrast"
+    },
+    {
+      "id": "night-city",
+      "label": "Night City Ride",
+      "description": "Neon, reflections, and premium after-dark energy.",
+      "sceneDirection": "wet asphalt reflections, cinematic neon signage, urban speed lines, and luxury night atmosphere"
+    },
+    {
+      "id": "forest",
+      "label": "Forest Ride",
+      "description": "Fresh air, green depth, and cinematic escape.",
+      "sceneDirection": "lush green tree corridors, filtered sunlight, and immersive natural motion"
+    },
+    {
+      "id": "racetrack",
+      "label": "Track Day",
+      "description": "Performance-first, athletic, and high-adrenaline.",
+      "sceneDirection": "clean race circuit geometry, premium speed energy, and performance-focused composition"
+    },
+    {
+      "id": "rain",
+      "label": "Rain Ride",
+      "description": "Moody, reflective, and highly cinematic.",
+      "sceneDirection": "soft rainfall, reflective surfaces, dramatic highlights, and emotional atmosphere"
+    },
+    {
+      "id": "sunset-highway",
+      "label": "Sunset Highway",
+      "description": "Warm, aspirational, and built for campaign storytelling.",
+      "sceneDirection": "golden-hour highway light, clean road perspective, and expansive premium travel mood"
+    }
+  ],
+  "colors": [
+    "#0033A0",
+    "#0A1F44",
+    "#C8102E",
+    "#E5E7EB",
+    "#111827",
+    "#2563EB",
+    "#22C55E",
+    "#F59E0B",
+    "#14B8A6"
+  ],
+  "behaviorQuestion": {
+    "title": "Your friend is late by 20 minutes. What do you do?",
+    "description": "This quick behavior cue helps define your emotional tone and friendship dynamic inside the final composition.",
+    "options": [
+      {
+        "id": "leave",
+        "label": "Leave",
+        "description": "Bold and independent. Your time matters.",
+        "traits": [
+          "confident",
+          "self-directed",
+          "fearlessly stylish"
+        ],
+        "emotionalTone": "assertive and magnetic",
+        "socialDynamicFriend": "two close friends with playful respect for each other's independence",
+        "socialDynamicSolo": "a self-assured rider owning the road with complete independence"
+      },
+      {
+        "id": "stay",
+        "label": "Stay",
+        "description": "Calm and loyal. You protect the bond.",
+        "traits": [
+          "calm",
+          "loyal",
+          "effortlessly grounded"
+        ],
+        "emotionalTone": "warm and trustworthy",
+        "socialDynamicFriend": "two close friends with a deeply supportive, easygoing connection",
+        "socialDynamicSolo": "a calm rider with a grounded, trustworthy presence"
+      },
+      {
+        "id": "scold",
+        "label": "Wait & scold",
+        "description": "Expressive and emotional. You care, loudly.",
+        "traits": [
+          "expressive",
+          "passionate",
+          "big-hearted"
+        ],
+        "emotionalTone": "lively and emotionally vivid",
+        "socialDynamicFriend": "two close friends with teasing chemistry and visible affection",
+        "socialDynamicSolo": "an expressive rider with bold body language and emotional charisma"
+      }
+    ]
+  }
+}

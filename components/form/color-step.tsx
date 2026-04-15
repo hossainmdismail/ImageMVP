@@ -1,13 +1,13 @@
-import { colorPresets } from "@/lib/constants/bikes";
 import { StepShell } from "@/components/form/step-shell";
 import { Input } from "@/components/ui/input";
 
 interface Props {
+  colors: string[];
   value: string;
   onSelect: (value: string) => void;
 }
 
-export function ColorStep({ value, onSelect }: Props) {
+export function ColorStep({ colors, value, onSelect }: Props) {
   return (
     <StepShell
       eyebrow="Step 4"
@@ -15,7 +15,7 @@ export function ColorStep({ value, onSelect }: Props) {
       description="This guides wardrobe tones, accent styling, and the overall visual personality of the generated scene."
     >
       <div className="grid grid-cols-4 gap-3 sm:grid-cols-8">
-        {colorPresets.map((color) => (
+        {colors.map((color) => (
           <button
             key={color}
             type="button"

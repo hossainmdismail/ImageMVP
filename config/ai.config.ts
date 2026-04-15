@@ -6,6 +6,12 @@ export interface AIRuntimeConfig {
   apiUrl?: string;
   textModel: string;
   imageModel: string;
+  responsesModel: string;
+  openAIUseResponsesIdentity: boolean;
+  maxReferenceImages: number;
+  imageSize: string;
+  imageQuality: string;
+  inputFidelity: string;
 }
 
 export function getAIConfig(): AIRuntimeConfig {
@@ -16,7 +22,13 @@ export function getAIConfig(): AIRuntimeConfig {
     apiKey: resolveAPIKey(provider),
     apiUrl: process.env.AI_API_URL,
     textModel: process.env.AI_TEXT_MODEL || "gpt-4o-mini",
-    imageModel: process.env.AI_IMAGE_MODEL || "gpt-image-1"
+    imageModel: process.env.AI_IMAGE_MODEL || "gpt-image-1",
+    responsesModel: process.env.AI_RESPONSES_MODEL || process.env.AI_TEXT_MODEL || "gpt-4o-mini",
+    openAIUseResponsesIdentity: process.env.AI_OPENAI_USE_RESPONSES_IDENTITY === "true",
+    maxReferenceImages: Number(process.env.AI_MAX_REFERENCE_IMAGES || "1"),
+    imageSize: process.env.AI_IMAGE_SIZE || "1024x1536",
+    imageQuality: process.env.AI_IMAGE_QUALITY || "high",
+    inputFidelity: process.env.AI_INPUT_FIDELITY || "high"
   };
 }
 

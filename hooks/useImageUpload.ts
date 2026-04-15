@@ -3,25 +3,26 @@
 import { useState } from "react";
 
 export function useImageUpload() {
-  const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string>("");
+  const [files, setFiles] = useState<File[]>([]);
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
-  async function updateFile(nextFile: File | null) {
-    setFile(nextFile);
+  async function updateFiles(nextFiles: FileList | File[] | null, limit = 3) {
+    const normalized = nextFiles ? Array.from(nextFiles).slice(0, limit) : [];
+    setFiles(normalized);
 
-    if (!nextFile) {
-      setPreviewUrl("");
+    if (!normalized.length) {
+      setPreviewUrls([]);
       return;
     }
 
-    const preview = await readFileAsDataUrl(nextFile);
-    setPreviewUrl(preview);
+    const previews = await Promise.all(normalized.map((file) => readFileAsDataUrl(file)));
+    setPreviewUrls(previews);
   }
 
   return {
-    file,
-    previewUrl,
-    updateFile
+    files,
+    previewUrls,
+    updateFiles
   };
 }
 

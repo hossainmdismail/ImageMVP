@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { createAIProvider } from "@/lib/ai";
 import { getAIConfig, hasUsableAIConfig } from "@/config/ai.config";
+import { readExperienceContent } from "@/lib/content";
 import { createMockRideStoryImage } from "@/lib/utils/mock-image";
 import { buildRidePromptBundle, fallbackStoryText } from "@/lib/utils/prompt";
 import { RideFormData, RideGenerationResponse } from "@/types";
@@ -33,7 +34,13 @@ export async function GET() {
     hasApiKey: Boolean(config.apiKey),
     hasApiUrl: Boolean(config.apiUrl),
     textModel: config.textModel,
-    imageModel: config.imageModel
+    imageModel: config.imageModel,
+    responsesModel: config.responsesModel,
+    openAIUseResponsesIdentity: config.openAIUseResponsesIdentity,
+    maxReferenceImages: config.maxReferenceImages,
+    imageSize: config.imageSize,
+    imageQuality: config.imageQuality,
+    inputFidelity: config.inputFidelity
   });
 }
 
@@ -47,10 +54,12 @@ export async function POST(request: NextRequest) {
     }
 
     const payload = JSON.parse(rawPayload) as RideFormData;
-    const photo = formData.get("photo");
-    const file = photo instanceof File ? photo : undefined;
+    const photos = formData.getAll("photos");
+    const imageFiles = photos.filter((item): item is File => item instanceof File);
+    const file = imageFiles[0];
+    const content = await readExperienceContent();
 
-    const bundle = buildRidePromptBundle(payload);
+    const bundle = buildRidePromptBundle(payload, content);
     const fallback = fallbackStoryText(payload, bundle);
     const config = getAIConfig();
 
@@ -65,7 +74,7 @@ export async function POST(request: NextRequest) {
 
         const [storyResult, imageResult] = await Promise.allSettled([
           provider.generateText(bundle.storyPrompt),
-          provider.generateImage({ prompt: bundle.imagePrompt, image: file })
+          provider.generateImage({ prompt: bundle.imagePrompt, image: file, images: imageFiles })
         ]);
 
         if (storyResult.status === "fulfilled") {

@@ -36,15 +36,71 @@ export class OpenAIProvider implements AIProvider {
     return data.choices?.[0]?.message?.content || "{}";
   }
 
-  async generateImage({ prompt, image }: GenerateImageParams): Promise<string> {
+  async generateImage({ prompt, images = [], image }: GenerateImageParams): Promise<string> {
     const baseUrl = this.config.apiUrl || "https://api.openai.com/v1";
+    const referenceImages = images.length
+      ? images.slice(0, this.config.maxReferenceImages)
+      : image
+        ? [image]
+        : [];
 
-    if (image) {
+    if (referenceImages.length && this.config.openAIUseResponsesIdentity) {
+      const response = await fetch(`${baseUrl}/responses`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.config.apiKey}`
+        },
+        body: JSON.stringify({
+          model: this.config.responsesModel,
+          input: [
+            {
+              role: "user",
+              content: await Promise.all([
+                {
+                  type: "input_text",
+                  text: prompt
+                },
+                ...referenceImages.map(async (file) => ({
+                  type: "input_image",
+                  image_url: await this.fileToDataUrl(file)
+                }))
+              ])
+            }
+          ],
+          tools: [
+            {
+              type: "image_generation",
+              size: this.config.imageSize,
+              quality: this.config.imageQuality,
+              input_fidelity: this.config.inputFidelity
+            }
+          ]
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(await this.buildErrorMessage("responses image generation", response));
+      }
+
+      const data = await response.json();
+      const imageCall = data.output?.find((item: any) => item.type === "image_generation_call");
+
+      if (imageCall?.result) {
+        return `data:image/png;base64,${imageCall.result}`;
+      }
+
+      throw new Error("OpenAI responses image generation did not include an image payload.");
+    }
+
+    if (referenceImages.length) {
       const formData = new FormData();
       formData.append("model", this.config.imageModel);
       formData.append("prompt", prompt);
-      formData.append("image", image);
-      formData.append("size", "1024x1024");
+      formData.append("image", referenceImages[0]);
+      formData.append("size", this.config.imageSize);
+      formData.append("quality", this.config.imageQuality);
+      formData.append("input_fidelity", this.config.inputFidelity);
 
       const response = await fetch(`${baseUrl}/images/edits`, {
         method: "POST",
@@ -71,7 +127,8 @@ export class OpenAIProvider implements AIProvider {
       body: JSON.stringify({
         model: this.config.imageModel,
         prompt,
-        size: "1024x1024"
+        size: this.config.imageSize,
+        quality: this.config.imageQuality
       })
     });
 
@@ -106,5 +163,11 @@ export class OpenAIProvider implements AIProvider {
     } catch {
       return `OpenAI ${action} failed: ${response.status} ${raw}`;
     }
+  }
+
+  private async fileToDataUrl(file: File) {
+    const arrayBuffer = await file.arrayBuffer();
+    const base64 = Buffer.from(arrayBuffer).toString("base64");
+    return `data:${file.type || "image/jpeg"};base64,${base64}`;
   }
 }

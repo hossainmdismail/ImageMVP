@@ -1,11 +1,7 @@
-export type RideEnvironment =
-  | "city"
-  | "village"
-  | "mountain"
-  | "coastal"
-  | "desert";
+export type RideEnvironment = string;
 
-export type BehaviorChoice = "leave" | "stay" | "scold";
+export type BehaviorChoice = string;
+export type CompanionMode = "friend" | "solo";
 
 export interface BasicInfo {
   name: string;
@@ -56,4 +52,44 @@ export interface SelectOption {
   id: string;
   label: string;
   description: string;
+}
+
+export interface EnvironmentOption extends SelectOption {
+  sceneDirection: string;
+}
+
+export interface BehaviorOption extends SelectOption {
+  traits: string[];
+  emotionalTone: string;
+  socialDynamicFriend: string;
+  socialDynamicSolo: string;
+}
+
+export interface ExperienceContent {
+  hero: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    highlights: string[];
+    viralityTitle: string;
+    viralityDescription: string;
+  };
+  settings: {
+    companionMode: CompanionMode;
+    defaultAgeRange: string;
+    defaultVibe: string;
+    defaultFavoriteColor: string;
+    helmetRequired: boolean;
+    poseDirection: string;
+    cameraFrame: string;
+    poseVariants: string[];
+  };
+  bikes: BikeOption[];
+  environments: EnvironmentOption[];
+  colors: string[];
+  behaviorQuestion: {
+    title: string;
+    description: string;
+    options: BehaviorOption[];
+  };
 }

@@ -18,8 +18,8 @@ export function ResultCard({ result, onRegenerate }: Props) {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <div className="overflow-hidden rounded-[32px] border border-white/80 bg-white/75 p-3 shadow-glow backdrop-blur">
-        <div className="relative aspect-square overflow-hidden rounded-[26px] bg-slate-100">
-          <Image src={result.imageUrl} alt="Generated ride story scene" fill className="object-cover" />
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[26px] bg-slate-100">
+          <Image src={result.imageUrl} alt="Generated ride story scene" fill className="object-contain" />
         </div>
       </div>
 
