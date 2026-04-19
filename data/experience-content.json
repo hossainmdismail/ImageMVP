@@ -184,64 +184,64 @@
   ],
   "environments": [
     {
-      "id": "city",
-      "label": "City Ride",
-      "description": "Fast pace, lights, and a stylish street-energy backdrop.",
-      "sceneDirection": "neon-lit avenues, dynamic architecture, and fashionable street framing"
+      "id": "dhaka-city",
+      "label": "Dhaka City",
+      "description": "Busy urban energy, modern roads, city lights, and stylish metropolitan motion.",
+      "sceneDirection": "Dhaka city roads, premium urban atmosphere, realistic South Asian city texture, modern traffic-light glow, and fashionable metropolitan framing"
     },
     {
-      "id": "village",
-      "label": "Village Ride",
-      "description": "Warm, grounded, and rich with everyday charm.",
-      "sceneDirection": "open roads, soft daylight, local texture, and grounded warmth"
+      "id": "rajshahi",
+      "label": "Rajshahi",
+      "description": "Calm roads, greenery, open sky, and a clean scenic district feel.",
+      "sceneDirection": "Rajshahi roads with greenery, open sky, soft daylight, clean roadside composition, and authentic Bangladesh district atmosphere"
     },
     {
-      "id": "mountain",
-      "label": "Mountain Ride",
-      "description": "Epic views, elevation, and expressive freedom.",
-      "sceneDirection": "dramatic elevation, sweeping curves, and cinematic air"
+      "id": "bandarban",
+      "label": "Bandarban",
+      "description": "Hilly roads, dramatic bends, green mountains, and cinematic adventure energy.",
+      "sceneDirection": "Bandarban hill roads, lush mountain backdrop, sweeping curves, realistic Bangladesh hill district landscape, and premium adventure framing"
     },
     {
-      "id": "coastal",
-      "label": "Coastal Ride",
-      "description": "Breezy, cinematic, and full of horizon energy.",
-      "sceneDirection": "golden shoreline light, salty breeze, and expansive horizon lines"
+      "id": "coxs-bazar",
+      "label": "Cox's Bazar",
+      "description": "Sea breeze, coastal road mood, golden light, and iconic beachside openness.",
+      "sceneDirection": "Cox's Bazar coastal road environment, sea-adjacent atmosphere, warm horizon light, breezy premium travel mood, and realistic Bangladesh beach-town texture"
     },
     {
-      "id": "desert",
-      "label": "Desert Ride",
-      "description": "High contrast, fearless, and fashion-forward.",
-      "sceneDirection": "sun-baked openness, sculptural shadows, and premium editorial contrast"
+      "id": "sylhet-tea-garden",
+      "label": "Sylhet Tea Garden",
+      "description": "Rolling tea estates, soft green layers, and a fresh scenic premium vibe.",
+      "sceneDirection": "Sylhet tea garden roads, layered green hills, misty natural depth, premium scenic photography, and authentic Bangladesh landscape detail"
     },
     {
-      "id": "night-city",
-      "label": "Night City Ride",
-      "description": "Neon, reflections, and premium after-dark energy.",
-      "sceneDirection": "wet asphalt reflections, cinematic neon signage, urban speed lines, and luxury night atmosphere"
+      "id": "padma-bridge",
+      "label": "Padma Bridge",
+      "description": "Iconic modern infrastructure, open road confidence, and aspirational travel energy.",
+      "sceneDirection": "Padma Bridge inspired roadway scene, expansive bridge perspective, modern Bangladesh infrastructure, open-road momentum, and premium travel composition"
     },
     {
-      "id": "forest",
-      "label": "Forest Ride",
-      "description": "Fresh air, green depth, and cinematic escape.",
-      "sceneDirection": "lush green tree corridors, filtered sunlight, and immersive natural motion"
+      "id": "kuakata",
+      "label": "Kuakata",
+      "description": "Coastal calm, open sky, and serene road-trip storytelling by the sea.",
+      "sceneDirection": "Kuakata seafront road mood, open coastal horizon, calm natural daylight, and realistic Bangladesh seaside travel framing"
     },
     {
-      "id": "racetrack",
-      "label": "Track Day",
-      "description": "Performance-first, athletic, and high-adrenaline.",
-      "sceneDirection": "clean race circuit geometry, premium speed energy, and performance-focused composition"
+      "id": "srimangal",
+      "label": "Sreemangal",
+      "description": "Green roadside charm, tea-country freshness, and relaxed premium adventure mood.",
+      "sceneDirection": "Sreemangal tea-region road, lush greenery, soft natural light, roadside serenity, and authentic Bangladesh countryside elegance"
     },
     {
-      "id": "rain",
-      "label": "Rain Ride",
-      "description": "Moody, reflective, and highly cinematic.",
-      "sceneDirection": "soft rainfall, reflective surfaces, dramatic highlights, and emotional atmosphere"
+      "id": "sajek",
+      "label": "Sajek",
+      "description": "Cloud-kissed mountain roads, elevated views, and premium travel emotion.",
+      "sceneDirection": "Sajek valley inspired road setting, elevated hill-road perspective, cloud-layer atmosphere, scenic Bangladesh highland mood, and cinematic premium depth"
     },
     {
-      "id": "sunset-highway",
-      "label": "Sunset Highway",
-      "description": "Warm, aspirational, and built for campaign storytelling.",
-      "sceneDirection": "golden-hour highway light, clean road perspective, and expansive premium travel mood"
+      "id": "rainy-dhaka",
+      "label": "Rainy Dhaka",
+      "description": "Reflective streets, moody lights, and stylish after-rain city atmosphere.",
+      "sceneDirection": "rain-soaked Dhaka roads, realistic puddle reflections, subtle city light glow, premium monsoon mood, and authentic Bangladesh urban texture"
     }
   ],
   "colors": [
