@@ -120,8 +120,8 @@ export function RideStoryExperience() {
           </div>
 
           <h1 className="text-[clamp(2rem,8vw,4rem)] font-black leading-[0.9] tracking-[-0.07em] text-white sm:text-[clamp(2rem,8vw,4rem)]">
-            Your Ride
-            <span className="block text-[#6687ff]">
+            Your Ride 
+            <span className="text-[#6687ff] ml-3">
               Story
             </span>
           </h1>

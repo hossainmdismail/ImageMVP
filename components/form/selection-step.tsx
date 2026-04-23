@@ -16,7 +16,7 @@ interface Props {
   type?: "image" | "default" | "color";
 }
 
-const BIKE_PAGE_SIZE = 9;
+const BIKE_PAGE_SIZE = 8;
 
 export function SelectionStep({
   eyebrow,
@@ -60,15 +60,15 @@ export function SelectionStep({
   return (
     <section className="mx-auto w-full max-w-[1100px]">
       <div className="mb-10 text-center">
-        <h2 className="text-[2.6rem] font-black leading-tight tracking-[-0.045em] text-white md:text-[3.2rem]">
+        <h2 className="text-[2rem] font-black leading-tight tracking-[-0.045em] text-white md:text-[2.2rem]">
           {title}
         </h2>
-        <p className="hide mx-auto mt-4 max-w-xl text-[1.05rem] leading-7 text-white/58 md:text-[1.15rem]">
+        <p className="hide mx-auto mt-4 max-w-xl text-sm leading-7 text-white/50 md:text-md">
           {description}
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:gap-4 lg:grid-cols-4">
         {visibleOptions.map((option) => (
           <OptionCard
             key={option.id}
