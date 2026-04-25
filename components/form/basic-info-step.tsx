@@ -90,7 +90,7 @@ export function BasicInfoStep({
             <button
               type="button"
               onClick={onSendOtp}
-              disabled={otpBusy || otpLocked || !data.phone.trim()}
+              disabled={otpBusy || otpLocked || otpVerified || !data.phone.trim()}
               className="absolute right-2 top-1/2 h-9 -translate-y-1/2 rounded-[5px] bg-[#282a57] px-4 text-xs text-white transition hover:bg-[#32366b] disabled:cursor-not-allowed disabled:opacity-55"
             >
               {otpVerified ? "Verified" : otpLocked ? "Locked" : otpAction === "send" ? "Sending..." : otpSent ? "Resend OTP" : "Send OTP"}
@@ -98,7 +98,7 @@ export function BasicInfoStep({
           </div>
         </Field>
 
-        {otpSent ? (
+        {otpSent && !otpVerified ? (
           <Field label="OTP Verification">
             <div className="relative">
               <InputWithIcon
