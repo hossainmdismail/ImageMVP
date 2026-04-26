@@ -47,7 +47,7 @@ export function getDbPool() {
 async function rebuildPool() {
   try {
     await pool?.end();
-  } catch {}
+  } catch { }
 
   pool = null;
   schemaReady = false;
