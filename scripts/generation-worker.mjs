@@ -42,9 +42,9 @@ const client = new SQSClient({
   credentials:
     process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY
       ? {
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-        }
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+      }
       : undefined
 });
 
@@ -116,7 +116,7 @@ async function main() {
     const response = await client.send(
       new ReceiveMessageCommand({
         QueueUrl: queueUrl,
-        MaxNumberOfMessages: 1,
+        MaxNumberOfMessages: 10,
         WaitTimeSeconds: waitTimeSeconds,
         VisibilityTimeout: 180,
         AttributeNames: ["ApproximateReceiveCount"]
@@ -129,22 +129,24 @@ async function main() {
       continue;
     }
 
-    for (const message of messages) {
-      try {
-        const shouldDelete = await processMessage(message);
+    await Promise.all(
+      messages.map(async (message) => {
+        try {
+          const shouldDelete = await processMessage(message);
 
-        if (shouldDelete && message.ReceiptHandle) {
-          await client.send(
-            new DeleteMessageCommand({
-              QueueUrl: queueUrl,
-              ReceiptHandle: message.ReceiptHandle
-            })
-          );
+          if (shouldDelete && message.ReceiptHandle) {
+            await client.send(
+              new DeleteMessageCommand({
+                QueueUrl: queueUrl,
+                ReceiptHandle: message.ReceiptHandle
+              })
+            );
+          }
+        } catch (error) {
+          console.error("Worker loop error", error);
         }
-      } catch (error) {
-        console.error("Worker loop error", error);
-      }
-    }
+      })
+    );
   }
 
   console.log("Generation worker stopped.");
