@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.1037.0",
+    "browser-image-compression": "^2.0.2",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",
     "mysql2": "^3.22.2",

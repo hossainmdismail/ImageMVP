@@ -104,7 +104,9 @@ export async function processGenerationJob(params: { jobId: number; retryCount: 
     }
 
     if (providerError && !imageGenerated) {
-      if (params.finalAttempt) {
+      const isSafetyError = providerError.toLowerCase().includes("safety filter");
+
+      if (params.finalAttempt || isSafetyError) {
         await failGenerationJob(job.id, providerError, params.retryCount);
         if (job.generation_log_id) {
           await failGenerationLog(job.generation_log_id, providerError);

@@ -6,7 +6,7 @@ import {
   findLatestOtpRequest,
   markOtpSendStatus
 } from "@/lib/server/mysql";
-import { generateOtpCode, hashOtp, normalizeBangladeshPhone, sendOtpSms } from "@/lib/server/otp";
+import { BulkSmsError, generateOtpCode, hashOtp, normalizeBangladeshPhone, sendOtpSms } from "@/lib/server/otp";
 
 export const runtime = "nodejs";
 
@@ -87,6 +87,37 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "OTP could not be sent.";
+
+    if (error instanceof BulkSmsError && error.kind === "transport") {
+      return NextResponse.json(
+        {
+          message: "The SMS provider is temporarily unavailable. Please try again later.",
+          modalMessage: "We could not reach the SMS server right now."
+        },
+        { status: 503 }
+      );
+    }
+
+    if (error instanceof BulkSmsError && error.kind === "provider") {
+      return NextResponse.json(
+        {
+          message: "The SMS provider rejected the OTP request. Please check the sender ID or provider account.",
+          modalMessage: "The SMS gateway accepted the request but rejected delivery settings."
+        },
+        { status: 502 }
+      );
+    }
+
+    if (message.toLowerCase().includes("fetch failed") || message.toLowerCase().includes("network")) {
+      return NextResponse.json(
+        {
+          message: "The SMS provider is temporarily unavailable. Please try again later.",
+          modalMessage: "We could not reach the SMS server right now."
+        },
+        { status: 503 }
+      );
+    }
+
     return NextResponse.json({ message }, { status: 500 });
   }
 }

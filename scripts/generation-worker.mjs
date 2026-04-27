@@ -113,15 +113,22 @@ async function main() {
   console.log("Generation worker started.");
 
   while (!stopping) {
-    const response = await client.send(
-      new ReceiveMessageCommand({
-        QueueUrl: queueUrl,
-        MaxNumberOfMessages: 10,
-        WaitTimeSeconds: waitTimeSeconds,
-        VisibilityTimeout: 180,
-        AttributeNames: ["ApproximateReceiveCount"]
-      })
-    );
+    let response;
+    try {
+      response = await client.send(
+        new ReceiveMessageCommand({
+          QueueUrl: queueUrl,
+          MaxNumberOfMessages: 10,
+          WaitTimeSeconds: waitTimeSeconds,
+          VisibilityTimeout: 180,
+          AttributeNames: ["ApproximateReceiveCount"]
+        })
+      );
+    } catch (error) {
+      console.warn("Queue polling error (network drop?):", error.message);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      continue;
+    }
 
     const messages = response.Messages || [];
 

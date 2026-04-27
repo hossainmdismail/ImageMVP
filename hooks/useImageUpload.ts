@@ -2,12 +2,35 @@
 
 import { useState } from "react";
 
+import imageCompression from "browser-image-compression";
+
 export function useImageUpload() {
   const [files, setFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
   async function updateFiles(nextFiles: FileList | File[] | null, limit = 3) {
-    const normalized = nextFiles ? Array.from(nextFiles).slice(0, limit) : [];
+    let normalized = nextFiles ? Array.from(nextFiles).slice(0, limit) : [];
+
+    if (normalized.length > 0) {
+      const options = {
+        maxSizeMB: 2,
+        maxWidthOrHeight: 1280,
+        useWebWorker: true,
+        initialQuality: 0.85
+      };
+
+      normalized = await Promise.all(
+        normalized.map(async (file) => {
+          try {
+            return await imageCompression(file, options);
+          } catch (error) {
+            console.error("Compression failed for", file.name, error);
+            return file;
+          }
+        })
+      );
+    }
+
     setFiles(normalized);
 
     if (!normalized.length) {

@@ -98,13 +98,24 @@ export class GeminiProvider implements AIProvider {
   private extractText(data: unknown) {
     const parsed = data as {
       candidates?: Array<{
+        finishReason?: string;
         content?: {
           parts?: Array<{ text?: string }>;
         };
       }>;
     };
 
-    const parts = parsed.candidates?.[0]?.content?.parts;
+    const candidate = parsed.candidates?.[0];
+
+    if (
+      candidate?.finishReason === "SAFETY" ||
+      candidate?.finishReason === "RECITATION" ||
+      candidate?.finishReason === "BLOCKLIST"
+    ) {
+      throw new Error("Your request was blocked by AI safety filters. Please try a different prompt.");
+    }
+
+    const parts = candidate?.content?.parts;
 
     if (!Array.isArray(parts)) {
       return "{}";
@@ -122,6 +133,7 @@ export class GeminiProvider implements AIProvider {
   private extractImage(data: unknown) {
     const parsed = data as {
       candidates?: Array<{
+        finishReason?: string;
         content?: {
           parts?: Array<{
             inlineData?: {
@@ -133,7 +145,17 @@ export class GeminiProvider implements AIProvider {
       }>;
     };
 
-    const parts = parsed.candidates?.[0]?.content?.parts;
+    const candidate = parsed.candidates?.[0];
+
+    if (
+      candidate?.finishReason === "SAFETY" ||
+      candidate?.finishReason === "RECITATION" ||
+      candidate?.finishReason === "BLOCKLIST"
+    ) {
+      throw new Error("Your request was blocked by AI safety filters. Please try a different photo or prompt.");
+    }
+
+    const parts = candidate?.content?.parts;
 
     if (!Array.isArray(parts)) {
       throw new Error("Gemini image response did not include any content parts.");
